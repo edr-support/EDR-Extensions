@@ -43,7 +43,7 @@ if file_exists(path) then
     hunt.status.bad()
     return
 else
-    hunt.response.unquarantine(path)
+    edr.quarantine.unquarantine(path)
     hunt.log(string.format("File restored to path=%s", file:path()))
     hunt.status.good()
     return
