@@ -5,7 +5,6 @@ type: Response
 description: |  
     Restores a file by path
 author: Datto Support
-guid: 
 created: 2024-05-02
 updated: 2024-05-03
 
@@ -25,7 +24,21 @@ path =  hunt.arg.string("path")
 -- Path to file to restore
 hunt.log(string.format("Running with Runtime Arguments: path=%s", hunt.arg.string("path")))
 
---[=[ SEDTION 2: Execute Restore ]=]
+--[=[ SECTION 2: Functions ]=]
+
+local lfs = require("lfs")
+
+function file_exists(path)
+    local file = io.open(path, "r")
+    if file then
+        io.close(file)
+        return true
+    else
+        return false
+    end
+end
+
+--[=[ SECTION 3: Execute Restore ]=]
 
 if file_exists(path) then
     hunt.log(string.format("File to revert was found on the device already. Not restoring old version"))
