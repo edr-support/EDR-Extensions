@@ -26,8 +26,6 @@ hunt.log(string.format("Running with Runtime Arguments: path=%s", hunt.arg.strin
 
 --[=[ SECTION 2: Functions ]=]
 
-local lfs = require("lfs")
-
 function file_exists(path)
     local file = io.open(path, "r")
     if file then
